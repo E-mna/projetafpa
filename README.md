@@ -1,5 +1,44 @@
 # projetequipe
+=================== @Emna ===================
+un système d'inscription avec des fonctionnalités de base comme la création de compte, 
+la génération d'un token JWT, 
+et des mesures de sécurité comme le hachage du mot de passe. 
 
+1- Créer le modèle User:
+Ce modèle va représenter les utilisateurs dans ta base de données.  
+Ce modèle utilise PanacheEntity, qui simplifie la gestion des entités avec Quarkus.
+
+2- Créer le DTO UserDto:
+Nous avons besoin d'un Data Transfer Object (DTO) pour transférer les données lors de l'inscription.
+Ce DTO sera utilisé pour recevoir les données de l'utilisateur depuis une requête HTTP.
+
+3- Créer le service AuthService pour gérer l'inscription:
+Le service AuthService gérera l'inscription d'un utilisateur. Il va :
+Vérifier si l'utilisateur existe déjà.
+Hacher le mot de passe pour la sécurité.
+Créer un nouvel utilisateur dans la base de données.
+Générer un token JWT pour cet utilisateur.
+[Explication du métier :
+On vérifie si l'email ou le login existent déjà dans la base de données. Si c'est le cas, une réponse de conflit est envoyée.
+Si tout est bon, on crée un nouvel utilisateur avec les informations fournies.
+Le mot de passe est haché en utilisant BCrypt pour des raisons de sécurité.
+Un token JWT est généré pour l'utilisateur une fois inscrit.]
+
+4- méthode pour générer le Token JWT
+JwtUtil pour gérer la génération et la validation du token.
+La méthode generateToken génère un token JWT qui contient le login de l'utilisateur et son rôle, ainsi qu'une date d'expiration.
+Le token est signé avec une clé secrète via l'algorithme HS256.
+
+5- Gérer la vérification du token
+validateToken():méthode peut être utilisée dans des endpoints protégés, comme pour l'accès à des ressources qui nécessitent d'être connecté.
+
+6-
+Endpoint sécurisé:
+Ce token peut ensuite être utilisé pour sécuriser d'autres endpoints via des vérifications basées sur les rôles.
+
+
+
+==============================================
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
