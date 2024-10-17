@@ -36,7 +36,33 @@ validateToken():méthode peut être utilisée dans des endpoints protégés, com
 Endpoint sécurisé:
 Ce token peut ensuite être utilisé pour sécuriser d'autres endpoints via des vérifications basées sur les rôles.
 
-
+------------------------------------------------
+7- Modification du mot de passe de l'utilisateur  
+------------------------------------------------
+ 
+Fonctionnalité : Un utilisateur authentifié peut modifier son mot de passe.
+L'utilisateur doit fournir son ancien mot de passe et un nouveau mot de passe dans la requête.
+Le token JWT est extrait pour identifier l'utilisateur actuel.
+L'ancien mot de passe est vérifié via BCrypt.
+Si l'ancien mot de passe est correct, le nouveau mot de passe est haché avec BCrypt et mis à jour dans la base de données.
+Si le mot de passe est modifié avec succès, un message de confirmation est retourné.
+Si l'ancien mot de passe est incorrect, une erreur 400 Bad Request est retournée.
+-----------------------------------------------------------
+8. Modifier les coordonnées de l'utilisateur (login, email)
+-----------------------------------------------------------
+ 
+Fonctionnalité : Un utilisateur authentifié peut modifier son login et son email.
+L'utilisateur doit fournir le nouveau login et email.
+Le token JWT est utilisé pour identifier l'utilisateur actuel.
+L'API vérifie que le nouvel email et le nouveau login ne sont pas déjà utilisés par d'autres utilisateurs.
+Si les informations sont uniques et valides, elles sont mises à jour dans la base de données.
+Si l'email ou le login sont déjà utilisés, l'API retourne une erreur 409 Conflict.
+En résumé, ce que peut faire ton API maintenant :
+Inscription d'utilisateurs avec un mot de passe sécurisé et génération d'un token JWT.
+Authentification via token JWT et accès à des endpoints protégés.
+Modification du mot de passe pour les utilisateurs authentifiés, avec vérification du mot de passe actuel.
+Modification des coordonnées (email et login) avec validation de leur unicité.
+Ces fonctionnalités sont protégées par des rôles (USER, ADMIN) et utilisent le token JWT pour l'authentification.
 
 ==============================================
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
