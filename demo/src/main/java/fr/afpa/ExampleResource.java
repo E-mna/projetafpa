@@ -1,4 +1,4 @@
-package com.company;
+package fr.afpa;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -11,6 +11,6 @@ public class ExampleResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
-        return "Hello RESTEasy";
+        return "Hello from Quarkus REST";
     }
 }
